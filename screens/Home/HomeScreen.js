@@ -38,10 +38,6 @@ import NoConnectionScreen from "../../components/NoConnectionScreen";
 import { ProductData } from "../../Context/data/productData";
 import { CategoryData } from "../../Context/data/categoryData";
 
-// socket io part
-// import io from "socket.io-client";
-// const socket = io.connect("http://localhost:3000");
-// import { socket } from "../../App";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3000");
 // Mahdi-1 to minimize load on sever

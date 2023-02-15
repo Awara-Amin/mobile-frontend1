@@ -1,0 +1,187 @@
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableHightLight,
+  TouchableOpacity,
+  Dimensions,
+  Button,
+  Modal,
+} from "react-native";
+
+import { Image } from "native-base";
+
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Fonts } from "../../constant/styles";
+// import EasyButton from "../Shared/StyledComponents/EasyButton";
+
+var { width } = Dimensions.get("window");
+
+const ListItemCoupon = (props) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [test, setTest] = useState(props);
+  console.log("props ListItemCoupon aaaaaaaaaaaaaaaaaaaaa 2");
+  // console.log(props);
+  console.log(test.brand);
+  return (
+    <View>
+      <Modal
+        AnimationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TouchableOpacity
+              underlayColor="#E8E8E8"
+              onPress={() => {
+                setModalVisible(false);
+              }}
+              style={{
+                alignSelf: "flex-end",
+                position: "absolute",
+                top: 5,
+                right: 10,
+              }}
+            >
+              <Icon name="close" size={20} />
+            </TouchableOpacity>
+
+            <Button
+              title="Edit"
+              onPress={() => [
+                // props.navigation.navigate("ProductForm", { item: props }),
+                props.navigation.navigate("Coupons", { item: test }),
+                setModalVisible(false),
+              ]}
+            />
+            <Button
+              title="Delete"
+              onPress={() => [
+                // props.navigation.navigate("ProductForm"),
+                // alert("Hi"),
+                props.delete(test._id),
+                setModalVisible(false),
+              ]}
+            />
+            {/* <EasyButton
+              medium
+              secondary
+              onPress={() => [
+                props.navigation.navigate("ProductForm", { item: props }),
+                setModalVisible(false),
+              ]}
+            >
+              <Text style={styles.textStyle}>Edit</Text>
+            </EasyButton> */}
+
+            {/* <EasyButton
+              medium
+              danger
+              onPress={() => [props.delete(props._id), setModalVisible(false)]}
+            >
+              <Text style={styles.textStyle}>Delete</Text>
+            </EasyButton> */}
+          </View>
+        </View>
+      </Modal>
+
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate("Product Detail", { item: props });
+        }}
+        onLongPress={() => setModalVisible(true)}
+        style={[
+          styles.container,
+          { backgroundColor: props.index % 2 == 0 ? "white" : "gainsboro" },
+        ]}
+      >
+        {/* <Image
+          source={{
+            uri: test.image
+              ? test.image
+              : "https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png",
+          }}
+          resizeMode="contain"
+          style={styles.image}
+          alt={props.name}
+        /> */}
+        <Text style={styles.item}>{test.discount}</Text>
+        <Text style={styles.item}>{test.total}</Text>
+        <View style={styles.callNowButtonStyle}>
+          <Text style={{ ...Fonts.primaryColorBold }}>
+            {test.isActive == false ? "NO" : "YES"}
+          </Text>
+        </View>
+        {/* <Text style={styles.item}>{test.isActive == false ? "NO" : "YES"}</Text> */}
+
+        {/* <Text style={styles.item}>{test.isActive}</Text> */}
+        {/* <Text style={styles.item}>{test.price}</Text> */}
+        {/* <Text numberOfLines={1} ellipse="tail">
+          {props.name}
+        </Text> */}
+
+        {/* <Text style={styles.item} numberOfLines={1} ellipse="tail">
+       {props.category.name} 
+          
+        </Text> */}
+
+        {/* <Text style={styles.item}>${props.price}</Text> */}
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    padding: 5,
+    width: width,
+  },
+
+  image: {
+    borderRadius: 50,
+    width: width / 6,
+    height: 20,
+    margin: 2,
+    resizeMode: "contain",
+  },
+
+  item: {
+    flexWrap: "wrap",
+    margin: 3,
+    width: width / 6,
+  },
+
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+  },
+});
+
+export default ListItemCoupon;

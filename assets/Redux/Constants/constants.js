@@ -1,0 +1,18 @@
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const CLEAR_CART = "CLEAR_CART";
+
+// for creating favorite List
+export const ADD_TO_FAV = "ADD_TO_FAV";
+export const REMOVE_FROM_FAV = "REMOVE_FROM_FAV";
+export const CLEAR_FAV = "CLEAR_FAV";
+
+// for creating reviews
+export const PRODUCT_REVIEW_CREATE_REQUEST = "PRODUCT_CREATE_REVIEW_REQUEST";
+export const PRODUCT_REVIEW_CREATE_SUCCESS = "PRODUCT_CREATE_REVIEW_SUCCESS";
+export const PRODUCT_REVIEW_CREATE_FAIL = "PRODUCT_CREATE_REVIEW_FAIL";
+export const PRODUCT_REVIEW_CREATE_RESET = "PRODUCT_CREATE_REVIEW_RESET";
+
+// export const ADD_TO_SOCKET = "ADD_TO_SOCKET";
+// export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+// export const CLEAR_CART = "CLEAR_CART";
